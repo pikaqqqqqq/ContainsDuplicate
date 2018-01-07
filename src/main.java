@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * Created by think on 2018/1/7.
@@ -27,6 +28,7 @@ public class main {
     }
 
     //排序法ok
+    //time:O(nlogn) space:O(1)
     public static boolean containsDuplicate2(int[] nums) {
         if (nums == null || nums.length < 2) return false;
         Arrays.sort(nums);
@@ -34,7 +36,19 @@ public class main {
             if (nums[i - 1] == nums[i]) {
                 return true;
             }
+        }
+        return false;
+    }
 
+    //hashset的方法：可以去重
+    //time:O(n) space:O(n)
+    public static boolean containsDuplicate3(int[] nums) {
+        if (nums == null || nums.length < 2) return false;
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!set.add(nums[i])) {
+                return true;
+            }
         }
         return false;
     }
